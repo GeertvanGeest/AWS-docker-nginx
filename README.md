@@ -1,4 +1,4 @@
-# NGINX for reverse proxy container
+# NGINX for reverse proxy container with Rstudio
 
 Based on [this tutorial](https://leangaurav.medium.com/simplest-https-setup-nginx-reverse-proxy-letsencrypt-ssl-certificate-aws-cloud-docker-4b74569b3c61)
 
@@ -50,7 +50,13 @@ Which specifies the image used by the `rstudio` service.
 You can pass also variables to the container. These are taken over from the shell where the `docker compose` command is run. Here for example the usernames and passwords if you want to host rstudio with multiple users:
 
 ```sh
-export BATCH_USER_CREATION="user1:pass1;user2:pass2"
+BATCH_USER_CREATION="user1:pass1;user2:pass2"
+```
+
+And to set to admin password:
+
+```sh
+PASSWORD=myverysecureadminpassword
 ```
 
 Now start the services:
