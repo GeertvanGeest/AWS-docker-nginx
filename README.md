@@ -2,6 +2,22 @@
 
 Based on [this tutorial](https://leangaurav.medium.com/simplest-https-setup-nginx-reverse-proxy-letsencrypt-ssl-certificate-aws-cloud-docker-4b74569b3c61)
 
+## Generate credentials
+
+Generate a list of credentials based on first name and last name of participants: 
+
+```sh
+./utils/generate_credentials.sh -l examples/user_list_credentials.txt -o credentials_list.txt
+```
+
+Generate a variable called `BATCH_USER_CREATION` that is used by the Rstudio container to generate users:
+
+```sh
+source utils/user_list_variable.sh credentials_list.txt
+```
+
+## Start the containers
+
 For a certificate issued by Let's encrypt, you will need first to make sure that the IP you are hosting the app is correctly associated to your domain. In the repo the domain `sib-training-test.ml` is used. 
 
 Setting up the reverse proxy occurs in three steps:
