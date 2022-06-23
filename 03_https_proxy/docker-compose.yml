@@ -31,3 +31,8 @@ services:
       - PASSWORD
       - ROOT=TRUE
 
+volumes:
+  data:
+  group_work:
+  home:
+
