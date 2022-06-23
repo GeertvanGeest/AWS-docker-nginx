@@ -13,18 +13,19 @@ services:
       - ./config:/config
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - /tmp/acme_challenge:/tmp/acme_challenge
-      - data:/data
-      - group_work:/group_work
-      - home:/home
-
     links:
       - rstudio
     restart: always
+
   rstudio:
     container_name: 'rstudio'
     image: ${IMAGE}
     ports:
       - 8787:8787
+    volumes:
+      - data:/data
+      - group_work:/group_work
+      - home:/home
     environment:
       - BATCH_USER_CREATION
       - PASSWORD
