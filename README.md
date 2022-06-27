@@ -7,7 +7,7 @@ Based on [this tutorial](https://leangaurav.medium.com/simplest-https-setup-ngin
 Generate a list of credentials based on first name and last name of participants: 
 
 ```sh
-./utils/generate_credentials.sh -l examples/user_list_credentials.txt -o credentials_list.txt
+./utils/generate_credentials.sh -l examples/user_list_credentials.txt > credentials_list.txt
 ```
 
 Generate a variable called `BATCH_USER_CREATION` that is used by the Rstudio container to generate users:

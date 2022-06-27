@@ -2,19 +2,16 @@
 
 USAGE="Usage: generate_credentials -l <user list> [-o <output file>] \n
 \n
-This command generates credentials for users\n
+This command generates credentials for users. Writes to stdout.\n
 \n
 -l  tab-delimited list of users, with 2 columns: first name and last name. Required. \n
--o  output file. Default: ./credentials_list.txt"
+"
 
 while getopts ":l:o:" opt
 do
   case $opt in
     l)
       LIST=$OPTARG
-      ;;
-    o)
-      OUTFILE=$OPTARG
       ;;
     \?)
       echo -e "Invalid option: -$OPTARG \n" >&2
@@ -37,11 +34,11 @@ then
   exit 1
 fi
 
+# ignore foreign characters
+export LC_ALL=C
+
 # required options
 if [ "$LIST" == "" ]; then echo "option -l is missing, but required">&2 && exit 1; fi
-
-# default values
-if [ "$OUTFILE" == "" ]; then OUTFILE=./credentials_list.txt; fi
 
 # get script source directory to not break secondary script dependencies
 SOURCEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -58,6 +55,8 @@ cat $LIST | tail -c1 | read -r _ || echo >> $LIST
 
 # removing carriage returns and spaces
 cat $LIST | tr -d '\015\040' > $TMPULIST
+
+cat $LIST
 
 LIST=$TMPULIST
 
@@ -85,6 +84,4 @@ do
 done
 
 paste $TMPUNAMES $TMPPASSWD \
-| awk -v OFS='\t' 'BEGIN {print "first", "last", "username", "password"}{print $0}' \
-> $OUTFILE
-
+| awk -v OFS='\t' 'BEGIN {print "first", "last", "username", "password"}{print $0}' 
