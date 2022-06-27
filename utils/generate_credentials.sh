@@ -34,6 +34,9 @@ then
   exit 1
 fi
 
+# ignore foreign characters
+export LC_ALL=C
+
 # required options
 if [ "$LIST" == "" ]; then echo "option -l is missing, but required">&2 && exit 1; fi
 
@@ -52,6 +55,8 @@ cat $LIST | tail -c1 | read -r _ || echo >> $LIST
 
 # removing carriage returns and spaces
 cat $LIST | tr -d '\015\040' > $TMPULIST
+
+cat $LIST
 
 LIST=$TMPULIST
 
