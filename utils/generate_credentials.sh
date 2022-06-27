@@ -56,8 +56,6 @@ cat $LIST | tail -c1 | read -r _ || echo >> $LIST
 # removing carriage returns and spaces
 cat $LIST | tr -d '\015\040' > $TMPULIST
 
-cat $LIST
-
 LIST=$TMPULIST
 
 FIRSTL=`cat "$LIST" | cut -f 1 | tr -cd '\11\12\15\40-\176' | tr [:upper:] [:lower:] | cut -c-1`
