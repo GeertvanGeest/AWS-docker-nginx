@@ -96,3 +96,9 @@ Now start the services:
 ```sh
 docker compose up --build -d
 ```
+
+## Reload nginx after changins certs
+
+```sh
+docker exec -it [CONTAINER ID] nginx -s reload
+```
