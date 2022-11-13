@@ -28,7 +28,7 @@ sudo service docker start
 
 Logout and login again to use docker with `sudo`. 
 
-For a certificate issued by Let's encrypt, you will need first to make sure that the IP you are hosting the app is correctly associated to your domain. In the repo the domain `sib-training-test.ml` is used. 
+For a certificate issued by Let's encrypt, you will need first to make sure that the IP you are hosting the app is correctly associated to your domain. In the repo the domain `sib-training.ml` is used. 
 
 Setting up the reverse proxy occurs in three steps:
 
